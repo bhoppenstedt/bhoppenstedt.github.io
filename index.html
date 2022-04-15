@@ -1,10 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Algorithmensammlung</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Algorithmensammlung</title>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src = "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <link rel = "stylesheet" href = "https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+        <script src = "https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src = "https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    </head>
+    <body>
 
-</body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-bottom:10px;">
+          <a class="navbar-brand" href="#">Algorithmensammlung</a>
+        </nav>
+
+        <div class="container">
+            <table id = "algorithmen" class = "table table-bordered table-striped" style = "width:100%">
+            <thead>
+                <tr>
+                    <th> Kategorie </th>
+                    <th> Name </th>
+                    <th> Typ </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-toggle="modal" data-target="#modalStochasticGradientDescent">
+                    <td> Optimierung </td>
+                    <td> Stochastic Gradient Descent </td>
+                    <td> Trainingsmethode </td>
+                </tr>
+                <tr data-toggle="modal" data-target="#modalGradientDescent">
+                    <td> Numerik </td>
+                    <td > Gradient Descent </td>
+                    <td> Optimierungsmethode </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="sgd-placeholder"></div>
+        <div id="gd-placeholder"></div>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#algorithmen').DataTable();
+            } );
+
+            $(function(){
+              $("#sgd-placeholder").load("Optimierung/StochasticGradientDescent.html");
+              $("#gd-placeholder").load("Optimierung/GradientDescent.html");
+            });
+        </script>
+
+    </body>
 </html>
