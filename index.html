@@ -1,10 +1,301 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Charakter Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
-<body>
+
+<body style="background-color:black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card mx-auto" style="width: 18rem; margin-top: 1rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Der Charakter</h5>
+                        <p id="text-age">Alter: </p>
+                        <p id="text-character">Eigenschaft: </p>
+                        <p id="text-emotion">Aktuelle Emotion: </p>
+                        <p id="text-hobby">Hobby: </p>
+                        <p id="text-prof">Beruf: </p>
+                        <button type="button" class="btn btn-dark" onclick="generateCharacter()">Generieren</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var characterOptions = {
+            "age": [
+                "Kind",
+                "Jugendliche:r",
+                "18-30 Jahre",
+                "30-50 Jahre",
+                "50-70 Jahre",
+                ">70 Jahre"
+            ],
+            "emotions": [
+                  'Freude',
+                  'Trauer',
+                  'Wut',
+                  'Angst',
+                  'Überraschung',
+                  'Ekel',
+                  'Verwirrung',
+                  'Glück',
+                  'Hoffnung',
+                  'Liebe',
+                  'Eifersucht',
+                  'Langeweile',
+                  'Stolz',
+                  'Scham',
+                  'Neid',
+                  'Empathie',
+                  'Euphorie',
+                  'Melancholie',
+                  'Enttäuschung',
+                  'Ruhe',
+                  'Nervosität',
+                  'Zuversicht',
+                  'Entsetzen',
+                  'Verlegenheit',
+                  'Zufriedenheit',
+                  'Furchtlosigkeit',
+                  'Verletzlichkeit',
+                  'Gelassenheit',
+                  'Empfindsamkeit',
+                  'Verzweiflung'],
+             "professions": [
+                  'Arzt',
+                  'Lehrer',
+                  'Ingenieur',
+                  'Koch',
+                  'Designer',
+                  'Verkäufer',
+                  'Anwalt',
+                  'Polizist',
+                  'Bäcker',
+                  'Journalist',
+                  'Programmierer',
+                  'Künstler',
+                  'Musiker',
+                  'Schneider',
+                  'Elektriker',
+                  'Architekt',
+                  'Friseur',
+                  'Kellner',
+                  'Schreiner',
+                  'Mechaniker',
+                  'Fotograf',
+                  'Fahrer',
+                  'Krankenschwester',
+                  'Florist',
+                  'Tierarzt',
+                  'Psychologe',
+                  'Astronaut',
+                  'Landwirt',
+                  'Forscher',
+                  'Pilot',
+                  'Dolmetscher',
+                  'Athlet',
+                  'Manager',
+                  'Model',
+                  'Tänzer',
+                  'Sozialarbeiter',
+                  'Chemiker',
+                  'Historiker',
+                  'Ökonom',
+                  'Gärtner',
+                  'Schauspieler',
+                  'Geologe',
+                  'Journalist',
+                  'Wissenschaftler',
+                  'Tierpfleger',
+                  'Mathematiker',
+                  'Innenarchitekt',
+                  'Reiseleiter',
+                  'Physiker',
+                  'Zahnarzt',
+                  'Berater',
+                  'Mechatroniker',
+                  'Biologe',
+                  'Kfz-Mechaniker',
+                  'Koch',
+                  'Buchhalter',
+                  'Krankenpfleger',
+                  'Grafikdesigner',
+                  'Flugbegleiter',
+                  'Optiker',
+                  'Personaltrainer',
+                  'Fremdsprachenlehrer',
+                  'Feuerwehrmann',
+                  'Bergmann',
+                  'Bibliothekar',
+                  'Informatiker',
+                  'Steuerberater',
+                  'Schornsteinfeger',
+                  'Florist',
+                  'Meteorologe',
+                  'Physiotherapeut',
+                  'Autor',
+                  'Bauer',
+                  'Elektriker',
+                  'Schriftsteller',
+                  'Modeberater',
+                  'Eventmanager',
+                  'Chirurg',
+                  'Kameramann',
+                  'Astrophysiker',
+                  'Ökologe',
+                  'Postbote',
+                  'Radiomoderator',
+                  'Notar',
+                  'Koch',
+                  'Webentwickler',
+                  'Tiertrainer',
+                  'Lebensmittelchemiker',
+                  'Übersetzer',
+                  'Schmied',
+                  'Umweltschützer'
+             ],
+             "traits": [
+                  "Freundlich",
+                  "Egoistisch",
+                  "Geduldig",
+                  "Abenteuerlustig",
+                  "Introvertiert",
+                  "Extrovertiert",
+                  "Hilfsbereit",
+                  "Unabhängig",
+                  "Kreativ",
+                  "Logisch",
+                  "Spontan",
+                  "Diszipliniert",
+                  "Nachdenklich",
+                  "Optimistisch",
+                  "Pessimistisch",
+                  "Zielstrebig",
+                  "Zurückhaltend",
+                  "Enthusiastisch",
+                  "Skeptisch",
+                  "Charismatisch",
+                  "Ruhig",
+                  "Engegengesetzt",
+                  "Aufmerksam",
+                  "Nachlässig",
+                  "Verantwortungsbewusst",
+                  "Sorglos",
+                  "Entschlossen",
+                  "Unentschlossen",
+                  "Empathisch",
+                  "Egozentrisch",
+                  "Tolerant",
+                  "Intolerant",
+                  "Selbstbewusst",
+                  "Schüchtern",
+                  "Loyal",
+                  "Manipulativ",
+                  "Ehrlich",
+                  "Unaufrichtig",
+                  "Humorvoll",
+                  "Langweilig",
+                  "Neugierig",
+                  "Desinteressiert",
+                  "Energisch",
+                  "Müde",
+                  "Respektvoll",
+                  "Respektlos",
+                  "Höflich",
+                  "Unhöflich",
+                  "Geduldig",
+                  "Ungeduldig",
+                  "Selbstlos",
+                  "Eigennützig"
+            ],
+            "hobby": [
+                  "Malen",
+                  "Kochen",
+                  "Musik hören",
+                  "Tanzen",
+                  "Lesen",
+                  "Schreiben",
+                  "Fotografie",
+                  "Gärtnern",
+                  "Basteln",
+                  "Wandern",
+                  "Radfahren",
+                  "Spielen von Videospielen",
+                  "Brettspiele spielen",
+                  "Stricken",
+                  "Angeln",
+                  "Klettern",
+                  "Reisen",
+                  "Film schauen",
+                  "Yoga",
+                  "Sport treiben",
+                  "Schwimmen",
+                  "Laufen",
+                  "Skifahren",
+                  "Snowboarden",
+                  "Surfen",
+                  "Kajakfahren",
+                  "Kochen",
+                  "Backen",
+                  "Singen",
+                  "Musikinstrument spielen",
+                  "Malen",
+                  "Zeichnen",
+                  "Töpfern",
+                  "Astronomie",
+                  "Sammeln (z.B. Münzen, Briefmarken)",
+                  "Philatelie",
+                  "Geocaching",
+                  "Vogelbeobachtung",
+                  "Modelleisenbahnen",
+                  "Stricken",
+                  "Gärtnern",
+                  "Windsurfen",
+                  "Tischtennis",
+                  "Schach",
+                  "Jonglieren",
+                  "Tanzkurse nehmen",
+                  "Kalligrafie",
+                  "Kalligraphie",
+                  "Schreinerei",
+                  "Videobearbeitung",
+                  "Kartenspiele spielen"
+            ],
+        }
+
+        function generateCharacter() {
+            var ageField = document.getElementById("text-age");
+            var ageArray = characterOptions["age"]
+            ageField.innerHTML = "Alter: " + ageArray[Math.floor(Math.random() * ageArray.length)];
+
+            var traitField = document.getElementById("text-character");
+            var traitArray = characterOptions["traits"]
+            traitField.innerHTML = "Eigenschaft: " + traitArray[Math.floor(Math.random() * traitArray.length)];
+
+            var emotionField = document.getElementById("text-emotion");
+            var emotionArray = characterOptions["emotions"]
+            emotionField.innerHTML = "Aktuelle Emotion: " + emotionArray[Math.floor(Math.random() * emotionArray.length)];
+
+
+            var hobbyField = document.getElementById("text-hobby");
+            var hobbyArray = characterOptions["hobby"]
+            hobbyField.innerHTML = "Hobby: " + hobbyArray[Math.floor(Math.random() * hobbyArray.length)];
+
+            var profField = document.getElementById("text-prof");
+            var profArray = characterOptions["professions"]
+            profField.innerHTML = "Beruf: " + profArray[Math.floor(Math.random() * profArray.length)];
+
+
+
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 </body>
 </html>
